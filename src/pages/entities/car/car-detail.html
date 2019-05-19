@@ -1,0 +1,124 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Car</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Brand</ion-label>
+            <div item-content>
+                <span>{{car.brand}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Model</ion-label>
+            <div item-content>
+                <span>{{car.model}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Registration No</ion-label>
+            <div item-content>
+                <span>{{car.registrationNo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Image</ion-label>
+            <div item-content>
+                <div *ngIf="car.image">
+                    <a (click)="openFile(car.imageContentType, car.image)">
+                        <img [src]="'data:' + car.imageContentType + ';base64,' + car.image" style="max-width: 100%;" alt="car image"/>
+                    </a>
+                    {{car.imageContentType}}, {{byteSize(car.image)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Manufacturer Year</ion-label>
+            <div item-content>
+                <span>{{car.manufacturerYear}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Driver Id</ion-label>
+            <div item-content>
+                <span>{{car.driverId}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Description</ion-label>
+            <div item-content>
+                <span>{{car.description}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Age Restriction</ion-label>
+            <div item-content>
+                <span>{{car.ageRestriction}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Daily Rate</ion-label>
+            <div item-content>
+                <span>{{car.dailyRate}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Hourly Rate</ion-label>
+            <div item-content>
+                <span>{{car.hourlyRate}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Miles Surcharge</ion-label>
+            <div item-content>
+                <span>{{car.milesSurcharge}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Late Return Fee</ion-label>
+            <div item-content>
+                <span>{{car.lateReturnFee}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Cleaning Fee</ion-label>
+            <div item-content>
+                <span>{{car.cleaningFee}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Deposit</ion-label>
+            <div item-content>
+                <span>{{car.deposit}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Created At</ion-label>
+            <div item-content>
+                <span>{{car.createdAt | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Updated At</ion-label>
+            <div item-content>
+                <span>{{car.updatedAt | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Cartype</ion-label>
+            <div item-content *ngIf="car.cartype">
+                <a>{{car.cartype?.id}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Fleetowner</ion-label>
+            <div item-content *ngIf="car.fleetowner">
+                <a>{{car.fleetowner?.id}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button block (click)="open(car)">{{ 'EDIT_BUTTON' | translate }}</button>
+</ion-content>

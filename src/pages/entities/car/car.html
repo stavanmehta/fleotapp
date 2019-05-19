@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Cars</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="open()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<!-- todo: add elasticsearch support -->
+<ion-content padding>
+    <ion-refresher (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let car of cars; trackBy: trackId" #slidingItem>
+            <button ion-item (click)="detail(car)">
+                <p>{{car.brand}}</p>
+                <p>{{car.model}}</p>
+                <p>{{car.registrationNo}}</p>
+                <ion-avatar *ngIf="car.image">
+                    <img [src]="'data:' + car.imageContentType + ';base64,' + car.image" />
+                    <p *ngIf="car.image">{{car.imageContentType}}, {{byteSize(car.image)}}</p>
+                </ion-avatar>
+                <p>{{car.manufacturerYear}}</p>
+                <p>{{car.driverId}}</p>
+                <p>{{car.description}}</p>
+                <p>{{car.ageRestriction}}</p>
+                <p>{{car.dailyRate}}</p>
+                <p>{{car.hourlyRate}}</p>
+                <p>{{car.milesSurcharge}}</p>
+                <p>{{car.lateReturnFee}}</p>
+                <p>{{car.cleaningFee}}</p>
+                <p>{{car.deposit}}</p>
+                <p>{{car.createdAt | date:'medium'}}</p>
+                <p>{{car.updatedAt | date:'medium'}}</p>
+            </button>
+            <ion-item-options>
+                <button ion-button color="primary" (click)="open(slidingItem, car)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </button>
+                <button ion-button color="danger" (click)="delete(car)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!cars?.length">
+        No Cars found.
+    </ion-item>
+</ion-content>

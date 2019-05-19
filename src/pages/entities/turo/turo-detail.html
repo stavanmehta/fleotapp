@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Turo</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Turo Id</ion-label>
+            <div item-content>
+                <span>{{turo.turoId}}</span>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button block (click)="open(turo)">{{ 'EDIT_BUTTON' | translate }}</button>
+</ion-content>

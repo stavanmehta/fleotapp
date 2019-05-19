@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Fleet Owners</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="open()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<!-- todo: add elasticsearch support -->
+<ion-content padding>
+    <ion-refresher (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let fleetOwner of fleetOwners; trackBy: trackId" #slidingItem>
+            <button ion-item (click)="detail(fleetOwner)">
+                <p>{{fleetOwner.companyName}}</p>
+                <!-- todo: special handling for translating enum - {{'Gender.' + fleetOwner.gender}}" -->
+                <p>{{fleetOwner.gender}}</p>
+                <p>{{fleetOwner.phone}}</p>
+                <p>{{fleetOwner.addressLine1}}</p>
+                <p>{{fleetOwner.addressLine2}}</p>
+                <p>{{fleetOwner.city}}</p>
+                <p>{{fleetOwner.country}}</p>
+                <ion-avatar *ngIf="fleetOwner.image">
+                    <img [src]="'data:' + fleetOwner.imageContentType + ';base64,' + fleetOwner.image" />
+                    <p *ngIf="fleetOwner.image">{{fleetOwner.imageContentType}}, {{byteSize(fleetOwner.image)}}</p>
+                </ion-avatar>
+                <p>{{fleetOwner.createdAt | date:'medium'}}</p>
+                <p>{{fleetOwner.updatedAt | date:'medium'}}</p>
+            </button>
+            <ion-item-options>
+                <button ion-button color="primary" (click)="open(slidingItem, fleetOwner)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </button>
+                <button ion-button color="danger" (click)="delete(fleetOwner)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!fleetOwners?.length">
+        No Fleet Owners found.
+    </ion-item>
+</ion-content>

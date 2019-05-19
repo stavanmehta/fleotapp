@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Album</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Title</ion-label>
+            <div item-content>
+                <span>{{album.title}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Description</ion-label>
+            <div item-content>
+                <span>{{album.description}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Created</ion-label>
+            <div item-content>
+                <span>{{album.created | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Car</ion-label>
+            <div item-content *ngIf="album.car">
+                <a>{{album.car?.registrationNo}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button block (click)="open(album)">{{ 'EDIT_BUTTON' | translate }}</button>
+</ion-content>

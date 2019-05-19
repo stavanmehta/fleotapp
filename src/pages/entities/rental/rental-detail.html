@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Rental</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Start At</ion-label>
+            <div item-content>
+                <span>{{rental.startAt | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>End Aat</ion-label>
+            <div item-content>
+                <span>{{rental.endAat | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Car</ion-label>
+            <div item-content *ngIf="rental.car">
+                <a>{{rental.car?.id}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Fleetowner</ion-label>
+            <div item-content *ngIf="rental.fleetowner">
+                <a>{{rental.fleetowner?.id}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button block (click)="open(rental)">{{ 'EDIT_BUTTON' | translate }}</button>
+</ion-content>

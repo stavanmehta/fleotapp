@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Car Type</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Type Name</ion-label>
+            <div item-content>
+                <span>{{carType.typeName}}</span>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button block (click)="open(carType)">{{ 'EDIT_BUTTON' | translate }}</button>
+</ion-content>

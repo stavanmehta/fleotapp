@@ -1,0 +1,86 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Fleet Owner</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Company Name</ion-label>
+            <div item-content>
+                <span>{{fleetOwner.companyName}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Gender</ion-label>
+            <div item-content>
+                <span>{{fleetOwner.gender}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Phone</ion-label>
+            <div item-content>
+                <span>{{fleetOwner.phone}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Address Line 1</ion-label>
+            <div item-content>
+                <span>{{fleetOwner.addressLine1}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Address Line 2</ion-label>
+            <div item-content>
+                <span>{{fleetOwner.addressLine2}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>City</ion-label>
+            <div item-content>
+                <span>{{fleetOwner.city}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Country</ion-label>
+            <div item-content>
+                <span>{{fleetOwner.country}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Image</ion-label>
+            <div item-content>
+                <div *ngIf="fleetOwner.image">
+                    <a (click)="openFile(fleetOwner.imageContentType, fleetOwner.image)">
+                        <img [src]="'data:' + fleetOwner.imageContentType + ';base64,' + fleetOwner.image" style="max-width: 100%;" alt="fleetOwner image"/>
+                    </a>
+                    {{fleetOwner.imageContentType}}, {{byteSize(fleetOwner.image)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Created At</ion-label>
+            <div item-content>
+                <span>{{fleetOwner.createdAt | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Updated At</ion-label>
+            <div item-content>
+                <span>{{fleetOwner.updatedAt | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>User</ion-label>
+            <div item-content>{{fleetOwner.user?.id}}</div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Turo</ion-label>
+            <div item-content *ngIf="fleetOwner.turo">
+                <a>{{fleetOwner.turo?.id}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button block (click)="open(fleetOwner)">{{ 'EDIT_BUTTON' | translate }}</button>
+</ion-content>
